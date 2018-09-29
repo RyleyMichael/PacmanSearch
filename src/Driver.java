@@ -7,6 +7,7 @@
 //imports for scanning and file reading
 import java.util.Scanner;
 import java.io.FileReader;
+import java.util.ArrayList;
 
 public class Driver {
 
@@ -16,38 +17,28 @@ public class Driver {
         {
             //opens the file
             Scanner fileRead = new Scanner(new FileReader("open_maze.txt"));
+            fileRead.useDelimiter("");
 
-            //first two lines are the number of rows and columns
-            int numRows = fileRead.nextInt();
-            int numCols = fileRead.nextInt();
+            ArrayList<ArrayList<Character>> maze = new ArrayList<>();
+            int i = 0;
 
-            char[][] maze = new char[numRows][numCols];
-
-            //sets position to beginning of next line
-            fileRead.nextLine();
-
-            //loop through the whole maze
-            for (int row = 0; row < numRows; row++)
-            {
-
-                //read the character in and store it in the array
-                char[] line = fileRead.nextLine().toCharArray();
-                for (int i = 0; i < line.length; i++)
-                {
-                    maze[row][i] = line[i];
+            while (fileRead.hasNextLine()) {
+                maze.add(new ArrayList<>());
+                while (fileRead.hasNext()) {
+                    maze.get(i).add(fileRead.next().charAt(0));
                 }
+                i++;
             }
-
-            Maze instance = new Maze();
-            instance.printMaze(maze);
-
+            Maze open = new Maze();
+            open.printMaze(maze);
             fileRead.close();
         }
-
         //error is thrown if file cannot be found
         catch (Exception exception)
         {
             System.out.println(exception);
         }
+
+
     }
 }
