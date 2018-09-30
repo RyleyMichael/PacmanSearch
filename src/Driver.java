@@ -1,4 +1,4 @@
-/*
+/**
  * Ryley Rodriguez & Connor Grace
  * CSCI 446 - Artificial Intelligence
  * Fall 2018
@@ -13,6 +13,7 @@ public class Driver {
 
     public static void main(String[] args)
     {
+        //array list of characters
         ArrayList<ArrayList<Character>> maze = new ArrayList<>();
 
         try
@@ -20,40 +21,44 @@ public class Driver {
             //opens the file
             Scanner fileRead = new Scanner(new FileReader("open_maze.txt"));
 
+            //
             int i = 0;
 
-            while (fileRead.hasNextLine()) {
+            //loop through the whole file line-by-line
+            while (fileRead.hasNextLine())
+            {
                 String line = fileRead.nextLine();
                 char[] charLine = line.toCharArray();
-                maze.add(new ArrayList<>());
-                for (int j = 0; j < charLine.length; j++){
+                maze.add(new ArrayList<>()); //add an array list inside maze
+
+                //get the ith element, which is the second layer of the arrayList, and add it to the inner array list
+                for (int j = 0; j < charLine.length; j++)
+                {
                     maze.get(i).add(charLine[j]);
                 }
-                i++;
+                i++; //increment i to the next inner arrayList
             }
-            //Maze open = new Maze();
-            //open.printMaze(maze);
+
             fileRead.close();
         }
+
         //error is thrown if file cannot be found
         catch (Exception exception)
         {
             System.out.println(exception);
         }
 
+        //convert the maze to a 2d array
         ToArray toarray = new ToArray();
         char[][] array2d = toarray.convert(maze);
 
+        //print the array back to the console
+        System.out.println("Original Maze");
         PrintArray printarray = new PrintArray();
         printarray.printArray(array2d);
 
+        //find the starting point of the maze
         FindStart findstart = new FindStart();
         int[] startingCoords = findstart.start(array2d);
-
-
-
-
-
-
     }
 }
