@@ -13,24 +13,26 @@ public class Driver {
 
     public static void main(String[] args)
     {
+        ArrayList<ArrayList<Character>> maze = new ArrayList<>();
+
         try
         {
             //opens the file
             Scanner fileRead = new Scanner(new FileReader("open_maze.txt"));
-            fileRead.useDelimiter("");
 
-            ArrayList<ArrayList<Character>> maze = new ArrayList<>();
             int i = 0;
 
             while (fileRead.hasNextLine()) {
+                String line = fileRead.nextLine();
+                char[] charLine = line.toCharArray();
                 maze.add(new ArrayList<>());
-                while (fileRead.hasNext()) {
-                    maze.get(i).add(fileRead.next().charAt(0));
+                for (int j = 0; j < charLine.length; j++){
+                    maze.get(i).add(charLine[j]);
                 }
                 i++;
             }
-            Maze open = new Maze();
-            open.printMaze(maze);
+            //Maze open = new Maze();
+            //open.printMaze(maze);
             fileRead.close();
         }
         //error is thrown if file cannot be found
@@ -38,6 +40,19 @@ public class Driver {
         {
             System.out.println(exception);
         }
+
+        ToArray toarray = new ToArray();
+        char[][] array2d = toarray.convert(maze);
+
+        PrintArray printarray = new PrintArray();
+        printarray.printArray(array2d);
+
+        FindStart findstart = new FindStart();
+        int[] startingCoords = findstart.start(array2d);
+
+
+
+
 
 
     }
