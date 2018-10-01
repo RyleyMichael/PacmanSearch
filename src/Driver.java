@@ -53,12 +53,22 @@ public class Driver {
         char[][] array2d = toarray.convert(maze);
 
         //print the array back to the console
-        System.out.println("Original Maze");
+        System.out.println("\n\nOriginal Maze");
         PrintArray printarray = new PrintArray();
         printarray.printArray(array2d);
+        System.out.println();
 
         //find the starting point of the maze
         FindStart findstart = new FindStart();
-        int[] startingCoords = findstart.start(array2d);
+        //int[] startingCoords = findstart.start(array2d);
+        Node startingCoord = findstart.start(array2d);
+
+        //perform Breadth-First search on the maze
+        BFS bfs = new BFS();
+        ArrayList path = bfs.solve(array2d, startingCoord);
+        Object[] pathArray = path.toArray();
+        bfs.printPath(pathArray);
+
+        //System.out.println(bfs.solve(array2d, startingCoord));
     }
 }
