@@ -56,7 +56,6 @@ public class Driver {
         System.out.println("\n\nOriginal Maze");
         PrintArray printarray = new PrintArray();
         printarray.printArray(array2d);
-        System.out.println();
 
         //find the starting point of the maze
         FindStart findstart = new FindStart();
