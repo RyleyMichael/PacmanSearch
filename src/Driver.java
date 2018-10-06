@@ -50,24 +50,37 @@ public class Driver {
 
         //convert the maze to a 2d array
         ToArray toarray = new ToArray();
-        char[][] array2d = toarray.convert(maze);
+        char[][] openMaze = toarray.convert(maze);
+        char[][] openBFS = toarray.convert(maze);
+        char[][] openGreedy = toarray.convert(maze);
 
         //print the array back to the console
         System.out.println("\n\nOriginal Maze");
         PrintArray printarray = new PrintArray();
-        printarray.printArray(array2d);
+        printarray.printArray(openMaze);
 
         //find the starting point of the maze
-        FindStart findstart = new FindStart();
-        //int[] startingCoords = findstart.start(array2d);
-        Node startingCoord = findstart.start(array2d);
+        FindStart_End start_end = new FindStart_End();
+        Node startingCoord = start_end.start(openMaze);
+        Node endingCoord = start_end.end(openMaze);
 
         //perform Breadth-First search on the maze
         BFS bfs = new BFS();
-        ArrayList path = bfs.solve(array2d, startingCoord);
+        ArrayList path = bfs.solve(openBFS, startingCoord);
         Object[] pathArray = path.toArray();
         bfs.printPath(pathArray);
+        printarray.printArray(openBFS);
 
         //System.out.println(bfs.solve(array2d, startingCoord));
+
+        // Perform Greedy best-first search on the maze
+        Greedy greedy = new Greedy();
+        ArrayList greedyPath = greedy.solve(openGreedy, startingCoord, endingCoord);
+        Object[] greedyPathArray = greedyPath.toArray();
+        greedy.printPath(greedyPathArray);
+        printarray.printArray(openGreedy);
+
+        // Perform A* search on the maze
+
     }
 }
