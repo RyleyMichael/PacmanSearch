@@ -1,16 +1,20 @@
 /**
- *
+ * Class to find the distance between two given nodes
  */
-public class DistanceBetween {
+public class DistanceBetween
+{
 
     //constructor
-    public DistanceBetween(){}
+    public DistanceBetween()
+    {
+
+    }
 
     /**
      * Calculates the Manhattan distance between 2 nodes
-     * @param from
-     * @param to
-     * @return
+     * @param from the current node
+     * @param to the node of interest
+     * @return the distance between from and to
      */
     public int distance(Node from, Node to){
         int distance;

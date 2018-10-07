@@ -5,6 +5,7 @@
 public class Node {
 
     //instance variables
+    //WOULD LIKE TO CHANGE THESE TO rowCord AND colCord for it to make more sense with a 2d matrix
     private int xCord;
     private int yCord;
     private Node parent;

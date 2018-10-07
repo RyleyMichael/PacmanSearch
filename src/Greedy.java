@@ -234,7 +234,7 @@ public class Greedy
             }
 
             //PrintArray print = new PrintArray();
-            print.printArray(maze);
+            //print.printArray(maze);
         }
 
         System.out.println("Solution Maze via Greedy Best-First Search");
@@ -278,6 +278,6 @@ public class Greedy
 
         //subtracting two to leave out the initial state and the extra goal state
         System.out.println("The number of steps taken to get from the initial state to the goal state is " + (path.length - 2));
-        System.out.println("The number of nodes expanded by Breadth-First Search is " + numExpanded + "\n");
+        System.out.println("The number of nodes expanded by Greedy Best-First Search is " + numExpanded + "\n");
     }
 }
