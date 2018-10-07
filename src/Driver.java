@@ -52,6 +52,8 @@ public class Driver {
         ToArray toarray = new ToArray();
         char[][] openMaze = toarray.convert(maze);
         char[][] openBFS = toarray.convert(maze);
+        char[][] openDFS = toarray.convert(maze);
+        char[][] openAStar = toarray.convert(maze);
         char[][] openGreedy = toarray.convert(maze);
 
         //print the array back to the console
@@ -69,7 +71,7 @@ public class Driver {
         ArrayList path = bfs.solve(openBFS, startingCoord);
         Object[] pathArray = path.toArray();
         bfs.printPath(pathArray);
-        printarray.printArray(openBFS);
+        //printarray.printArray(openBFS);
 
         //System.out.println(bfs.solve(array2d, startingCoord));
 
@@ -78,7 +80,7 @@ public class Driver {
         ArrayList greedyPath = greedy.solve(openGreedy, startingCoord, endingCoord);
         Object[] greedyPathArray = greedyPath.toArray();
         greedy.printPath(greedyPathArray);
-        printarray.printArray(openGreedy);
+        //printarray.printArray(openGreedy);
 
         // Perform A* search on the maze
 

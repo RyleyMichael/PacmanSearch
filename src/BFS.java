@@ -90,7 +90,7 @@ public class BFS {
 
                     maze[pellet.getxCord()][pellet.getyCord()] = '.';
                     numExpanded++;
-                    System.out.println("\nSolution Maze");
+                    System.out.println("\nSolution Maze via Breadth-First Search");
                     print.printArray(maze);
 
                     return backtrack(pellet, startNode);
@@ -125,7 +125,7 @@ public class BFS {
 
                     maze[pellet.getxCord()][pellet.getyCord()] = '.';
                     numExpanded++;
-                    System.out.println("\nSolution Maze");
+                    System.out.println("\nSolution Maze via Breadth-First Search");
                     print.printArray(maze);
 
                     return backtrack(pellet, startNode);
@@ -160,7 +160,7 @@ public class BFS {
 
                     maze[pellet.getxCord()][pellet.getyCord()] = '.';
                     numExpanded++;
-                    System.out.println("\nSolution Maze");
+                    System.out.println("\nSolution Maze via Breadth-First Search");
                     print.printArray(maze);
 
                     return backtrack(pellet, startNode);
@@ -195,7 +195,7 @@ public class BFS {
 
                     maze[pellet.getxCord()][pellet.getyCord()] = '.';
                     numExpanded++;
-                    System.out.println("\nSolution Maze");
+                    System.out.println("\nSolution Maze via Breadth-First Search");
                     print.printArray(maze);
 
                     return backtrack(pellet, startNode);
@@ -204,7 +204,7 @@ public class BFS {
             }
         }
 
-        System.out.println("Solution Maze");
+        System.out.println("\nSolution Maze via Breadth-First Search");
         print.printArray(maze);
         return path;
     }
@@ -246,6 +246,6 @@ public class BFS {
 
         //subtracting one to leave out the initial state
         System.out.println("The number of steps taken to get from the initial state to the goal state is " + (path.length - 1));
-        System.out.println("The number of nodes expanded by Breadth-First Search is " + numExpanded);
+        System.out.println("The number of nodes expanded by Breadth-First Search is " + numExpanded + "\n");
     }
 }
