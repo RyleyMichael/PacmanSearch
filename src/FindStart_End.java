@@ -1,5 +1,5 @@
 /**
- * Class to find the starting point of the maze
+ * Class to find the starting point and the ending point of the maze
  */
 
 public class FindStart_End
