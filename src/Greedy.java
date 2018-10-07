@@ -1,12 +1,15 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
-
 /**
  * Class to perform the Greedy Best-First search algorithm
  */
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 public class Greedy
 {
+    //instance variables
+    private int numExpanded;
+
     //constructor
     public Greedy()
     {
@@ -14,7 +17,7 @@ public class Greedy
     }
 
     /**
-     * Method to solve the maze using Breadth-First search
+     * Method to solve the maze using Greedy Best-First search
      * @param maze
      * @param startNode
      * @return
@@ -43,6 +46,9 @@ public class Greedy
         // Instance of DistanceBetween class to find the distance between 2 nodes
         DistanceBetween distanceTo = new DistanceBetween();
 
+        //integer to represent the number of expanded nodes
+        numExpanded = 0;
+
         //add the first node to the queue
         Node currentNode;
         queue.add(startNode);
@@ -51,6 +57,9 @@ public class Greedy
         currentNode = startNode;
 
         startNode.setParent(startNode);
+
+        //make a new PrintArray instance to print the maze after each move
+        PrintArray print = new PrintArray();
 
         //run until the queue is empty
         while (!queue.isEmpty())
@@ -98,9 +107,15 @@ public class Greedy
 
                 //visited[northNode.getxCord()][northNode.getyCord()] = true;
                 if (maze[northNode.getxCord()][northNode.getyCord()] != '*')
+                    //mark the spot visited and update the number of expanded nodes
                     maze[northNode.getxCord()][northNode.getyCord()] = '.';
+                    numExpanded++;
 
                 northNode.setParent(currentNode);
+
+                //System.out.println("the parent of (" + northNode.getxCord() + "," + northNode.getyCord()
+                //        + ") is (" + currentNode.getxCord() + "," + currentNode.getyCord() + ")");
+
                 currentNode = northNode;
 
                 //check for exit
@@ -108,6 +123,12 @@ public class Greedy
                 {
                     Node pellet = new Node(northNode.getxCord(), northNode.getyCord());
                     pellet.setParent(currentNode);
+
+                    maze[pellet.getxCord()][pellet.getyCord()] = '.';
+                    numExpanded++;
+                    System.out.println("Solution Maze via Greedy Best-First Search");
+                    print.printArray(maze);
+
                     return backtrack(pellet, startNode);
                 }
             }
@@ -120,8 +141,13 @@ public class Greedy
                 //visited[eastNode.getxCord()][eastNode.getyCord()] = true;
                 if (maze[eastNode.getxCord()][eastNode.getyCord()] != '*')
                     maze[eastNode.getxCord()][eastNode.getyCord()] = '.';
+                    numExpanded++;
 
                 eastNode.setParent(currentNode);
+
+                //System.out.println("the parent of (" + eastNode.getxCord() + "," + eastNode.getyCord()
+                //        + ") is (" + currentNode.getxCord() + "," + currentNode.getyCord() + ")");
+
                 currentNode = eastNode;
 
                 //check for exit
@@ -129,6 +155,12 @@ public class Greedy
                 {
                     Node pellet = new Node(eastNode.getxCord(),eastNode.getyCord());
                     pellet.setParent(currentNode);
+
+                    maze[pellet.getxCord()][pellet.getyCord()] = '.';
+                    numExpanded++;
+                    System.out.println("Solution Maze via Greedy Best-First Search");
+                    print.printArray(maze);
+
                     return backtrack(pellet, startNode);
                 }
             }
@@ -141,8 +173,13 @@ public class Greedy
                 //visited[southNode.getxCord()][southNode.getyCord()] = true;
                 if (maze[southNode.getxCord()][southNode.getyCord()] != '*')
                     maze[southNode.getxCord()][southNode.getyCord()] = '.';
+                    numExpanded++;
 
                 southNode.setParent(currentNode);
+
+                //System.out.println("the parent of (" + southNode.getxCord() + "," + southNode.getyCord()
+                //       + ") is (" + currentNode.getxCord() + "," + currentNode.getyCord() + ")");
+
                 currentNode = southNode;
 
                 //check for exit
@@ -150,6 +187,12 @@ public class Greedy
                 {
                     Node pellet = new Node(southNode.getxCord(), southNode.getyCord());
                     pellet.setParent(currentNode);
+
+                    maze[pellet.getxCord()][pellet.getyCord()] = '.';
+                    numExpanded++;
+                    System.out.println("Solution Maze via Greedy Best-First Search");
+                    print.printArray(maze);
+
                     return backtrack(pellet, startNode);
                 }
             }
@@ -162,8 +205,13 @@ public class Greedy
                 //visited[westNode.getxCord()][westNode.getyCord()] = true;
                 if (maze[westNode.getxCord()][westNode.getyCord()] != '*')
                     maze[westNode.getxCord()][westNode.getyCord()] = '.';
+                    numExpanded++;
 
                 westNode.setParent(currentNode);
+
+                //System.out.println("the parent of (" + westNode.getxCord() + "," + westNode.getyCord()
+                //        + ") is (" + currentNode.getxCord() + "," + currentNode.getyCord() + ")");
+
                 currentNode = westNode;
 
                 //check for exit
@@ -171,17 +219,35 @@ public class Greedy
                 {
                     Node pellet = new Node(westNode.getxCord(),westNode.getyCord());
                     pellet.setParent(currentNode);
+
+                    maze[pellet.getxCord()][pellet.getyCord()] = '.';
+                    numExpanded++;
+                    System.out.println("Solution Maze via Greedy Best-First Search");
+                    print.printArray(maze);
+
                     return backtrack(pellet, startNode);
                 }
             }
             else
+            {
                 currentNode = queue.remove();
-            PrintArray print = new PrintArray();
+            }
+
+            //PrintArray print = new PrintArray();
             print.printArray(maze);
         }
+
+        System.out.println("Solution Maze via Greedy Best-First Search");
+        print.printArray(maze);
         return path;
     }
 
+    /**
+     *
+     * @param endNode
+     * @param startNode
+     * @return
+     */
     public ArrayList backtrack(Node endNode, Node startNode)
     {
         ArrayList path = new ArrayList();
@@ -198,12 +264,20 @@ public class Greedy
         return path;
     }
 
+    /**
+     *
+     * @param path
+     */
     public void printPath(Object[] path)
     {
-        //loop backwards through the array
-        for (int i = path.length - 1; i > -1; i--)
+        //loop backwards through the array; skipping the first element because the goal state is being added twice
+        /*for (int i = path.length - 1; i > 0; i--)
         {
             System.out.println(path[i]);
-        }
+        }*/
+
+        //subtracting two to leave out the initial state and the extra goal state
+        System.out.println("The number of steps taken to get from the initial state to the goal state is " + (path.length - 2));
+        System.out.println("The number of nodes expanded by Breadth-First Search is " + numExpanded + "\n");
     }
 }
