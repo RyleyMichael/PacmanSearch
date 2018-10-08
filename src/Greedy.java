@@ -76,7 +76,7 @@ public class Greedy
         while (!pQueue.isEmpty())
         {
             //remove the head of the priority queue
-            currentNode = pQueue.poll();
+            //currentNode = pQueue.poll();
 
             // Set north, east, south, and west node from current node
             northNode = new Node(currentNode.getxCord() - 1, currentNode.getyCord());
@@ -131,7 +131,7 @@ public class Greedy
                 //System.out.println("the parent of (" + northNode.getxCord() + "," + northNode.getyCord()
                 //        + ") is (" + currentNode.getxCord() + "," + currentNode.getyCord() + ")");
 
-                //currentNode = northNode;
+                currentNode = northNode;
 
                 //check for exit
                 if (maze[northNode.getxCord()][northNode.getyCord()] == '*')
@@ -164,7 +164,7 @@ public class Greedy
                 //System.out.println("the parent of (" + eastNode.getxCord() + "," + eastNode.getyCord()
                 //        + ") is (" + currentNode.getxCord() + "," + currentNode.getyCord() + ")");
 
-                //currentNode = eastNode;
+                currentNode = eastNode;
 
                 //check for exit
                 if (maze[eastNode.getxCord()][eastNode.getyCord()] == '*')
@@ -197,7 +197,7 @@ public class Greedy
                 //System.out.println("the parent of (" + southNode.getxCord() + "," + southNode.getyCord()
                 //       + ") is (" + currentNode.getxCord() + "," + currentNode.getyCord() + ")");
 
-                //currentNode = southNode;
+                currentNode = southNode;
 
                 //check for exit
                 if (maze[southNode.getxCord()][southNode.getyCord()] == '*')
@@ -230,7 +230,7 @@ public class Greedy
                 //System.out.println("the parent of (" + westNode.getxCord() + "," + westNode.getyCord()
                 //        + ") is (" + currentNode.getxCord() + "," + currentNode.getyCord() + ")");
 
-                //currentNode = westNode;
+                currentNode = westNode;
 
                 //check for exit
                 if (maze[westNode.getxCord()][westNode.getyCord()] == '*')
@@ -246,11 +246,11 @@ public class Greedy
                     return backtrack(pellet, startNode, maze);
                 }
             }
-            /*else
+            else
             {
-                //currentNode = queue.remove();
+                currentNode = pQueue.remove();
                 //currentNode = pQueue.poll();
-            }*/
+            }
 
             //PrintArray print = new PrintArray();
             //print.printArray(maze);
@@ -262,10 +262,10 @@ public class Greedy
     }
 
     /**
-     *
-     * @param endNode
-     * @param startNode
-     * @return
+     * Method to backtrack through the path
+     * @param endNode the goal state
+     * @param startNode the initial state
+     * @return the path from the initial state to the goal state
      */
     public ArrayList backtrack(Node endNode, Node startNode, char[][] maze)
     {
@@ -286,19 +286,19 @@ public class Greedy
     }
 
     /**
-     *
+     * Method to print the number of expanded nodes and the length of the path
      * @param path
      */
     public void printPath(Object[] path)
     {
         //loop backwards through the array; skipping the first element because the goal state is being added twice
-        for (int i = path.length - 1; i > 0; i--)
+        /*for (int i = path.length - 1; i > 0; i--)
         {
             System.out.println(path[i]);
-        }
+        }*/
 
         //subtracting one to leave out the initial state
-        System.out.println("The number of steps taken to get from the initial state to the goal state is " + (path.length - 1));
+        System.out.println("The number of steps taken to get from the initial state to the goal state is " + (path.length - 2));
         System.out.println("The number of nodes expanded by Greedy Best-First Search is " + numExpanded + "\n");
     }
 }
