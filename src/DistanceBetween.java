@@ -19,6 +19,10 @@ public class DistanceBetween
     public int distance(Node from, Node to){
         int distance;
         distance = Math.abs(to.getxCord() - from.getxCord()) + Math.abs(to.getyCord() - from.getyCord());
+
+        //experimental
+        from.sethScore(distance);
+
         return distance;
     }
 }

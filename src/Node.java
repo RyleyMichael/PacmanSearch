@@ -8,6 +8,7 @@ public class Node {
     //WOULD LIKE TO CHANGE THESE TO rowCord AND colCord for it to make more sense with a 2d matrix
     private int xCord;
     private int yCord;
+    private int hScore;
     private Node parent;
 
     /**
@@ -19,6 +20,24 @@ public class Node {
     {
         this.xCord = xCord;
         this.yCord = yCord;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public int gethScore()
+    {
+        return hScore;
+    }
+
+    /**
+     *
+     * @param hScore
+     */
+    public void sethScore(int hScore)
+    {
+        this.hScore = hScore;
     }
 
     /**
@@ -60,6 +79,6 @@ public class Node {
     @Override
     public String toString()
     {
-        return "(" + xCord + "," + yCord + ")";
+        return "(" + xCord + "," + yCord + ") . h_score = " + this.gethScore();
     }
 }

@@ -67,25 +67,25 @@ public class Driver {
         Node endingCoord = start_end.end(openMaze);
 
         //perform Breadth-First search on the maze
-        BFS bfs = new BFS();
+        /*BFS bfs = new BFS();
         ArrayList bfsPath = bfs.solve(openBFS, startingCoord);
         Object[] bfsPathArray = bfsPath.toArray();
-        bfs.printPath(bfsPathArray);
+        bfs.printPath(bfsPathArray);*/
         //printarray.printArray(openBFS);
 
         //perform Depth-First search on the maze
-        DFS dfs = new DFS();
+        /*DFS dfs = new DFS();
         ArrayList dfsPath = dfs.solve(openDFS, startingCoord);
         Object[] dfsPathArray = dfsPath.toArray();
-        dfs.printPath(dfsPathArray);
+        dfs.printPath(dfsPathArray);*/
 
         //System.out.println(bfs.solve(array2d, startingCoord));
 
         // Perform Greedy best-first search on the maze
-        /*Greedy greedy = new Greedy();
+        Greedy greedy = new Greedy();
         ArrayList greedyPath = greedy.solve(openGreedy, startingCoord, endingCoord);
         Object[] greedyPathArray = greedyPath.toArray();
-        greedy.printPath(greedyPathArray);*/
+        greedy.printPath(greedyPathArray);
         //printarray.printArray(openGreedy);
 
         // Perform A* search on the maze
