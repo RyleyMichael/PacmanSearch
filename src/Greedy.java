@@ -3,7 +3,9 @@
  */
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 
 public class Greedy
 {
@@ -27,6 +29,13 @@ public class Greedy
     {
         //queue representation
         LinkedList<Node> queue = new LinkedList<>();
+        PriorityQueue<Node> pQueue = new PriorityQueue<>(new Comparator<Node>() {
+            @Override
+            public int compare(Node one, Node two)
+            {
+                return one.gethScore() - two.gethScore();
+            }
+        });
 
         //array-list to represent shortest path
         ArrayList<Node> path = new ArrayList<>();
@@ -51,7 +60,8 @@ public class Greedy
 
         //add the first node to the queue
         Node currentNode;
-        queue.add(startNode);
+        //queue.add(startNode);
+        pQueue.add(startNode);
         maze[startNode.getxCord()][startNode.getyCord()] = '.';
 
         currentNode = startNode;
@@ -62,8 +72,12 @@ public class Greedy
         PrintArray print = new PrintArray();
 
         //run until the queue is empty
-        while (!queue.isEmpty())
+        //while (!queue.isEmpty())
+        while (!pQueue.isEmpty())
         {
+            //remove the head of the priority queue
+            currentNode = pQueue.poll();
+
             // Set north, east, south, and west node from current node
             northNode = new Node(currentNode.getxCord() - 1, currentNode.getyCord());
             eastNode = new Node(currentNode.getxCord(),currentNode.getyCord() + 1);
@@ -72,7 +86,7 @@ public class Greedy
 
             // Find minimum distance from surrounding nodes to the endNode
             minDistance = 999999999;        // Set minDistance to approximately infinity
-            if (maze[northNode.getxCord()][northNode.getyCord()] != '%' && maze[northNode.getxCord()][northNode.getyCord()] != '.'){
+            if (maze[northNode.getxCord()][northNode.getyCord()] != '%' && maze[northNode.getxCord()][northNode.getyCord()] != '.') {
                 if (distanceTo.distance(northNode, endNode) < minDistance) {
                     minDistance = distanceTo.distance(northNode, endNode);
                     minNode = "north";
@@ -103,7 +117,8 @@ public class Greedy
             //check North
             if (minNode.equals("north"))
             {
-                queue.add(northNode);
+                //queue.add(northNode);
+                pQueue.add(northNode);
 
                 //visited[northNode.getxCord()][northNode.getyCord()] = true;
                 if (maze[northNode.getxCord()][northNode.getyCord()] != '*')
@@ -116,7 +131,7 @@ public class Greedy
                 //System.out.println("the parent of (" + northNode.getxCord() + "," + northNode.getyCord()
                 //        + ") is (" + currentNode.getxCord() + "," + currentNode.getyCord() + ")");
 
-                currentNode = northNode;
+                //currentNode = northNode;
 
                 //check for exit
                 if (maze[northNode.getxCord()][northNode.getyCord()] == '*')
@@ -126,7 +141,7 @@ public class Greedy
 
                     maze[pellet.getxCord()][pellet.getyCord()] = '.';
                     numExpanded++;
-                    System.out.println("Solution Maze via Greedy Best-First Search");
+                    System.out.println("\nSolution Maze via Greedy Best-First Search");
                     print.printArray(maze);
 
                     return backtrack(pellet, startNode);
@@ -136,7 +151,8 @@ public class Greedy
             //check East
             else if (minNode.equals("east"))
             {
-                queue.add(eastNode);
+                //queue.add(eastNode);
+                pQueue.add(eastNode);
 
                 //visited[eastNode.getxCord()][eastNode.getyCord()] = true;
                 if (maze[eastNode.getxCord()][eastNode.getyCord()] != '*')
@@ -148,7 +164,7 @@ public class Greedy
                 //System.out.println("the parent of (" + eastNode.getxCord() + "," + eastNode.getyCord()
                 //        + ") is (" + currentNode.getxCord() + "," + currentNode.getyCord() + ")");
 
-                currentNode = eastNode;
+                //currentNode = eastNode;
 
                 //check for exit
                 if (maze[eastNode.getxCord()][eastNode.getyCord()] == '*')
@@ -158,7 +174,7 @@ public class Greedy
 
                     maze[pellet.getxCord()][pellet.getyCord()] = '.';
                     numExpanded++;
-                    System.out.println("Solution Maze via Greedy Best-First Search");
+                    System.out.println("\nSolution Maze via Greedy Best-First Search");
                     print.printArray(maze);
 
                     return backtrack(pellet, startNode);
@@ -168,7 +184,8 @@ public class Greedy
             //check South
             else if (minNode.equals("south"))
             {
-                queue.add(southNode);
+                //queue.add(southNode);
+                pQueue.add(southNode);
 
                 //visited[southNode.getxCord()][southNode.getyCord()] = true;
                 if (maze[southNode.getxCord()][southNode.getyCord()] != '*')
@@ -180,7 +197,7 @@ public class Greedy
                 //System.out.println("the parent of (" + southNode.getxCord() + "," + southNode.getyCord()
                 //       + ") is (" + currentNode.getxCord() + "," + currentNode.getyCord() + ")");
 
-                currentNode = southNode;
+                //currentNode = southNode;
 
                 //check for exit
                 if (maze[southNode.getxCord()][southNode.getyCord()] == '*')
@@ -190,7 +207,7 @@ public class Greedy
 
                     maze[pellet.getxCord()][pellet.getyCord()] = '.';
                     numExpanded++;
-                    System.out.println("Solution Maze via Greedy Best-First Search");
+                    System.out.println("\nSolution Maze via Greedy Best-First Search");
                     print.printArray(maze);
 
                     return backtrack(pellet, startNode);
@@ -200,7 +217,8 @@ public class Greedy
             //check West
             else if (minNode.equals("west"))
             {
-                queue.add(westNode);
+                //queue.add(westNode);
+                pQueue.add(westNode);
 
                 //visited[westNode.getxCord()][westNode.getyCord()] = true;
                 if (maze[westNode.getxCord()][westNode.getyCord()] != '*')
@@ -212,7 +230,7 @@ public class Greedy
                 //System.out.println("the parent of (" + westNode.getxCord() + "," + westNode.getyCord()
                 //        + ") is (" + currentNode.getxCord() + "," + currentNode.getyCord() + ")");
 
-                currentNode = westNode;
+                //currentNode = westNode;
 
                 //check for exit
                 if (maze[westNode.getxCord()][westNode.getyCord()] == '*')
@@ -222,22 +240,23 @@ public class Greedy
 
                     maze[pellet.getxCord()][pellet.getyCord()] = '.';
                     numExpanded++;
-                    System.out.println("Solution Maze via Greedy Best-First Search");
+                    System.out.println("\nSolution Maze via Greedy Best-First Search");
                     print.printArray(maze);
 
                     return backtrack(pellet, startNode);
                 }
             }
-            else
+            /*else
             {
-                currentNode = queue.remove();
-            }
+                //currentNode = queue.remove();
+                //currentNode = pQueue.poll();
+            }*/
 
             //PrintArray print = new PrintArray();
             //print.printArray(maze);
         }
 
-        System.out.println("Solution Maze via Greedy Best-First Search");
+        System.out.println("\nSolution Maze via Greedy Best-First Search");
         print.printArray(maze);
         return path;
     }
@@ -253,10 +272,25 @@ public class Greedy
         ArrayList path = new ArrayList();
         Node nodeToAdd = endNode;
 
+        //integer value to represent the hScore of the nodeToAdd
+        // the hScores need to be decreasing in value until the very last node it is equal to 1 i.e. right before the goal is found
+        // since we are starting at the end node the hScores will need to be increasing
+        // i.e nodeToAdd.getParent().gethScore() > nodeToAdd.gethScore
+        int currentHScore = -1;
+
         //backtrack until the starting node is added
         while (nodeToAdd != startNode)
         {
-            path.add(nodeToAdd);
+            currentHScore = nodeToAdd.gethScore();
+
+            //only add nodes with a higher hScore than the previous node.. this part is confusing!
+            if (nodeToAdd.getParent().gethScore() > currentHScore)
+            {
+                path.add(nodeToAdd);
+                //nodeToAdd = nodeToAdd.getParent();
+            }
+
+            //path.add(nodeToAdd);
             nodeToAdd = nodeToAdd.getParent();
         }
 
@@ -271,13 +305,13 @@ public class Greedy
     public void printPath(Object[] path)
     {
         //loop backwards through the array; skipping the first element because the goal state is being added twice
-        /*for (int i = path.length - 1; i > 0; i--)
+        for (int i = path.length - 1; i > 0; i--)
         {
             System.out.println(path[i]);
-        }*/
+        }
 
-        //subtracting two to leave out the initial state and the extra goal state
-        System.out.println("The number of steps taken to get from the initial state to the goal state is " + (path.length - 2));
+        //subtracting one to leave out the initial state
+        System.out.println("The number of steps taken to get from the initial state to the goal state is " + (path.length - 1));
         System.out.println("The number of nodes expanded by Greedy Best-First Search is " + numExpanded + "\n");
     }
 }
