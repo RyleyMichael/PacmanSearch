@@ -21,7 +21,7 @@ public class Driver {
             //opens the file
             Scanner fileRead = new Scanner(new FileReader("open_maze.txt"));
 
-            //
+            // counter to represent the inner array list
             int i = 0;
 
             //loop through the whole file line-by-line
@@ -67,17 +67,17 @@ public class Driver {
         Node endingCoord = start_end.end(openMaze);
 
         //perform Breadth-First search on the maze
-        /*BFS bfs = new BFS();
+        BFS bfs = new BFS();
         ArrayList bfsPath = bfs.solve(openBFS, startingCoord);
         Object[] bfsPathArray = bfsPath.toArray();
-        bfs.printPath(bfsPathArray);*/
+        bfs.printPath(bfsPathArray);
         //printarray.printArray(openBFS);
 
         //perform Depth-First search on the maze
-        /*DFS dfs = new DFS();
+        DFS dfs = new DFS();
         ArrayList dfsPath = dfs.solve(openDFS, startingCoord);
         Object[] dfsPathArray = dfsPath.toArray();
-        dfs.printPath(dfsPathArray);*/
+        dfs.printPath(dfsPathArray);
 
         //System.out.println(bfs.solve(array2d, startingCoord));
 
