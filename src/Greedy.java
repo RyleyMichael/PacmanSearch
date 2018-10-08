@@ -144,7 +144,7 @@ public class Greedy
                     System.out.println("\nSolution Maze via Greedy Best-First Search");
                     print.printArray(maze);
 
-                    return backtrack(pellet, startNode);
+                    return backtrack(pellet, startNode, maze);
                 }
             }
 
@@ -177,7 +177,7 @@ public class Greedy
                     System.out.println("\nSolution Maze via Greedy Best-First Search");
                     print.printArray(maze);
 
-                    return backtrack(pellet, startNode);
+                    return backtrack(pellet, startNode, maze);
                 }
             }
 
@@ -210,7 +210,7 @@ public class Greedy
                     System.out.println("\nSolution Maze via Greedy Best-First Search");
                     print.printArray(maze);
 
-                    return backtrack(pellet, startNode);
+                    return backtrack(pellet, startNode, maze);
                 }
             }
 
@@ -243,7 +243,7 @@ public class Greedy
                     System.out.println("\nSolution Maze via Greedy Best-First Search");
                     print.printArray(maze);
 
-                    return backtrack(pellet, startNode);
+                    return backtrack(pellet, startNode, maze);
                 }
             }
             /*else
@@ -267,30 +267,17 @@ public class Greedy
      * @param startNode
      * @return
      */
-    public ArrayList backtrack(Node endNode, Node startNode)
+    public ArrayList backtrack(Node endNode, Node startNode, char[][] maze)
     {
         ArrayList path = new ArrayList();
         Node nodeToAdd = endNode;
 
-        //integer value to represent the hScore of the nodeToAdd
-        // the hScores need to be decreasing in value until the very last node it is equal to 1 i.e. right before the goal is found
-        // since we are starting at the end node the hScores will need to be increasing
-        // i.e nodeToAdd.getParent().gethScore() > nodeToAdd.gethScore
-        int currentHScore = -1;
-
         //backtrack until the starting node is added
         while (nodeToAdd != startNode)
         {
-            currentHScore = nodeToAdd.gethScore();
-
-            //only add nodes with a higher hScore than the previous node.. this part is confusing!
-            if (nodeToAdd.getParent().gethScore() > currentHScore)
-            {
-                path.add(nodeToAdd);
-                //nodeToAdd = nodeToAdd.getParent();
-            }
 
             //path.add(nodeToAdd);
+            path.add(nodeToAdd);
             nodeToAdd = nodeToAdd.getParent();
         }
 

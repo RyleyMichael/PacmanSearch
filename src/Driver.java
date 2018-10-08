@@ -53,7 +53,7 @@ public class Driver {
         char[][] openMaze = toarray.convert(maze);
         char[][] openBFS = toarray.convert(maze);
         char[][] openDFS = toarray.convert(maze);
-        char[][] openAStar = toarray.convert(maze);
+        char[][] openAstar = toarray.convert(maze);
         char[][] openGreedy = toarray.convert(maze);
 
         //print the array back to the console
@@ -89,6 +89,9 @@ public class Driver {
         //printarray.printArray(openGreedy);
 
         // Perform A* search on the maze
-
+        Astar astar = new Astar();
+        ArrayList astarPath = astar.solve(openAstar, startingCoord, endingCoord);
+        Object[] astarPathArray = astarPath.toArray();
+        astar.printPath(astarPathArray);
     }
 }
